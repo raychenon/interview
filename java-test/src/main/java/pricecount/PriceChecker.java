@@ -5,7 +5,7 @@ import java.util.List;
 public class PriceChecker {
 
     /**
-     * This method returns number of Dates with at least n prices
+     * This method returns number of Dates with at least n prices official
      *
      * @param prices
      * @return

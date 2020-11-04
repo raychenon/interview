@@ -10,5 +10,19 @@ public class PriceDto {
     private double value;
 
 
+    public long getProductId() {
+        return productId;
+    }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public boolean isOfficial() {
+        return isOfficial;
+    }
+
+    public double getValue() {
+        return value;
+    }
 }
