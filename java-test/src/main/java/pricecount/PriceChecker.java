@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class PriceChecker {
     /**
@@ -32,9 +33,27 @@ public class PriceChecker {
 //                count += 1;
 //            }
 //        }
-        return (int) mapFrequency.entrySet()
+        count = (int) mapFrequency.entrySet()
                 .stream()
-                .filter(x -> x.getValue() >= n)
+                .filter(x -> x.getValue() > n)   // with more that n (> n) official prices by date, not at least (>= n)
+                .count();
+
+        return count;
+    }
+
+    /**
+     * Pure Functional Programming style
+     *
+     * @param prices - input prices coming from MSD application
+     * @param n      - threshold on number of prices
+     * @return number of Dates with at least n prices official
+     */
+    public int checkPricesPureFP(List<PriceDto> prices, int n) {
+        return (int) prices.stream()
+                .filter(p -> p.isOfficial())
+                .collect(Collectors.groupingBy(p -> p.getDate(), Collectors.counting()))
+                .entrySet().stream()
+                .filter(p -> p.getValue() > n)
                 .count();
     }
 
