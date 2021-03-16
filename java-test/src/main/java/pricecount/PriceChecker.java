@@ -27,13 +27,15 @@ public class PriceChecker {
             }
         }
 
-        for (Map.Entry<Date, Integer> entry : mapFrequency.entrySet()) {
-            if (entry.getValue() >= n) {
-                count += 1;
-            }
-        }
-        //...
-        return count;
+//        for (Map.Entry<Date, Integer> entry : mapFrequency.entrySet()) {
+//            if (entry.getValue() >= n) {
+//                count += 1;
+//            }
+//        }
+        return (int) mapFrequency.entrySet()
+                .stream()
+                .filter(x -> x.getValue() >= n)
+                .count();
     }
 
 
